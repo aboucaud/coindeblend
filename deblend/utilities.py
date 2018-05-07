@@ -1,6 +1,6 @@
 import os
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 from keras import backend as K
 
@@ -30,6 +30,8 @@ def plot_samples_one_hot(labels, output_file=False):
         array of shape (num_samples, x, y, num_onehots)
 
     """
+    import matplotlib.pyplot as plt
+
     if labels.ndim != 4:
         print("Incorrect input size - should be",
               "(num_samples, x, y, num_onehots)")
@@ -55,6 +57,8 @@ def plot_one_hot_eval(y_true, y_pred, output_file=False):
         array of shape (num_samples, x, y, num_onehots)
 
     """
+    import matplotlib.pyplot as plt
+    
     assert y_true.ndim == 3
     assert y_pred.ndim == 3
     fig_size = (16, 12)
