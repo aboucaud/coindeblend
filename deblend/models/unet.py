@@ -8,6 +8,7 @@ from keras.layers import Dropout
 
 __all__ = [
     'UNet',
+    'UNet_modular',
     'unet_dropout', 
     ]
 
@@ -153,5 +154,46 @@ def unet_dropout(input_shape, output_channels, p):
 
     conv10 = Conv2D(1, (1, 1), activation='sigmoid')(conv9)  # 3
     model = Model(inputs=[inputs], outputs=[conv10])
+
+    return model
+
+
+def UNet_modular(input_shape, output_channels, filt_size, depth, 
+                 activation='relu', dropout_rate=0.0, 
+                 kernel_size=(3, 3), pool_size=(2, 2)):
+    """
+    """
+    inputs = Input(shape=input_shape)
+
+    x = inputs
+    # Encoding
+    convolutions = []
+    for d in range(0, depth-1):
+        fsize = filt_size * 2 ** d
+        x = Conv2D(fsize, kernel_size, activation=activation, padding='same', name='block%d_conv1' % d)(x)
+        x = Dropout(dropout_rate, name='block%d_dropout1' % d)(x)
+        x = Conv2D(fsize, kernel_size, activation=activation, padding='same', name='block%d_conv2' % d)(x)
+        convolutions.append((fsize, x))
+        x = Dropout(dropout_rate, name='block%d_dropout2' % d)(x)
+        x = MaxPooling2D(pool_size=pool_size, name='block%d_maxpool' % d)(x)
+
+    # Middle layer
+    x = Conv2D(filt_size * 2 ** (depth-1), kernel_size, activation=activation, padding='same', name='midblock_conv1')(x)
+    x = Dropout(dropout_rate, name='midblock_dropout1')(x)
+    x = Conv2D(filt_size * 2 ** (depth-1), kernel_size, activation=activation, padding='same', name='midblock_conv2')(x)
+    x = Dropout(dropout_rate, name='midblock_dropout2')(x)
+
+    # Decoding
+    for d, (fsize, conv) in enumerate(reversed(convolutions)):
+        x = Conv2DTranspose(fsize, (3, 3), strides=(2, 2), padding='same', name='deconvblock%d' % d)(x)
+        x = concatenate([x, conv], axis=3)
+        x = Conv2D(fsize, kernel_size, activation=activation, padding='same', name='dblock%d_conv1' % d)(x)
+        x = Dropout(dropout_rate, name='dblock%d_dropout1' % d)(x)
+        x = Conv2D(fsize, kernel_size, activation=activation, padding='same', name='dblock%d_conv2' % d)(x)
+        x = Dropout(dropout_rate, name='dblock%d_dropout2' % d)(x)
+
+    x = Conv2D(output_channels, (1, 1), activation='sigmoid', name='last_block')(x)
+    
+    model = Model(inputs=[inputs], outputs=[x])
 
     return model
