@@ -1,15 +1,24 @@
 import os
 import numpy as np
 
-
 from keras import backend as K
 
-__all__ = ['plot_samples_one_hot', 'save_model', 'jaccard_coef']
+__all__ = [
+    'flux2mag',
+    'plot_samples_one_hot',
+    'save_model',
+    'jaccard_coef'
+]
 
 # TF order (n_entries, shape_0, shape_1, n_channels)
 AXIS = [1, 2, 3]  # all but n_entries
 # Epsilon
 EPS = 1e-12
+
+
+def flux2mag(flux, zeropoint):
+    return -2.5 * np.log10(flux) + zeropoint
+
 
 def jaccard_coef(y_true, y_pred):
     """
@@ -58,7 +67,7 @@ def plot_one_hot_eval(y_true, y_pred, output_file=False):
 
     """
     import matplotlib.pyplot as plt
-    
+
     assert y_true.ndim == 3
     assert y_pred.ndim == 3
     fig_size = (16, 12)

@@ -5,7 +5,13 @@ from keras import backend as K
 
 from .utilities import jaccard_coef
 
-__all__ = ['IOU', 'global_accuracy', 'mean_IOU', 'jaccard_coef_int', 'iou']
+__all__ = [
+    'IOU',
+    'global_accuracy',
+    'mean_IOU',
+    'jaccard_coef_int',
+    'iou_bitmap',
+]
 
 
 def jaccard_coef_int(y_true, y_pred):

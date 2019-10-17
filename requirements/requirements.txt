@@ -1,0 +1,9 @@
+scipy
+numpy
+jupyter
+pandas
+matplotlib
+click
+sep
+Keras
+tensorflow<2

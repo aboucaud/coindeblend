@@ -1,0 +1,14 @@
+name: coindeblend
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.6
+  - scipy
+  - numpy
+  - pandas
+  - jupyter
+  - matplotlib
+  - seaborn
+  - sep
+  - Keras
+  - tensorflow<2.0

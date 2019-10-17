@@ -5,5 +5,5 @@
 | (_| |  __/ |_) | |  __/ | | | (_| |
  \__,_|\___|_.__/|_|\___|_| |_|\__,_|
 
-Suite of deep learning methods for deblending
+Suite of deep learning methods for galaxy deblending
 """
