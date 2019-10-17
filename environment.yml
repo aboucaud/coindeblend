@@ -12,3 +12,4 @@ dependencies:
   - sep
   - Keras
   - tensorflow<2.0
+  - astropy

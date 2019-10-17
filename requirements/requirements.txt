@@ -7,3 +7,4 @@ click
 sep
 Keras
 tensorflow<2
+astropy
