@@ -13,9 +13,9 @@ import seaborn as sns
 import pandas as pd
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-from deblend.stats import mean_absolute_percentage_error
-from deblend.identity import paper_palette as PALETTE
-from deblend.utilities import flux2mag
+from coindeblend.stats import mean_absolute_percentage_error
+from coindeblend.identity import paper_palette as PALETTE
+from coindeblend.utilities import flux2mag
 
 
 sns.set_palette(PALETTE)

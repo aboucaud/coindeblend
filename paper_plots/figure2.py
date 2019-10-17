@@ -13,8 +13,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.anchored_artists import AnchoredDirectionArrows
 
-from deblend.identity import img_cmap
-from deblend.visualisation import asin_stretch_norm
+from coindeblend.identity import img_cmap
+from coindeblend.visualisation import asin_stretch_norm
 
 DIST_BINS = [(2,8), (8, 13), (13, 18), (18, 60)]
 MAGDIFF_BINS = [(0, 0.35), (0.35, 0.76), (0.76, 1.25), (1.25, 2)]

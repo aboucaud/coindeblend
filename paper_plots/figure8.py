@@ -12,8 +12,8 @@ import pandas as pd
 import seaborn as sns
 from scipy.stats import binned_statistic
 
-from deblend.identity import paper_palette as PALETTE
-from deblend.utilities import flux2mag
+from coindeblend.identity import paper_palette as PALETTE
+from coindeblend.utilities import flux2mag
 
 sns.set_palette(PALETTE)
 sns.set_context("paper")

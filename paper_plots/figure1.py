@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 
 from scipy.ndimage import binary_dilation
 
-from deblend.identity import img_cmap
-from deblend.identity import gal1_cmap
-from deblend.visualisation import asin_stretch_norm
+from coindeblend.identity import img_cmap
+from coindeblend.identity import gal1_cmap
+from coindeblend.visualisation import asin_stretch_norm
 
 
 SELECTION = {

@@ -14,7 +14,7 @@ import seaborn as sns
 import pandas as pd
 from scipy.stats import binned_statistic
 
-from deblend.identity import paper_palette as PALETTE
+from coindeblend.identity import paper_palette as PALETTE
 
 
 sns.set_palette(PALETTE)

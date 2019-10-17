@@ -12,8 +12,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from deblend.identity import paper_palette as PALETTE
-from deblend.scores import iou_bitmap
+from coindeblend.identity import paper_palette as PALETTE
+from coindeblend.scores import iou_bitmap
 
 plt.rc("font", size=15)
 plt.rc("xtick", labelsize='medium')
