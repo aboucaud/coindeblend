@@ -64,8 +64,8 @@ def main(datadir):
 
 
 if __name__ == "__main__":
-    if not os.path.exists('plots'):
-        os.makedirs('plots')
+    if not os.path.exists('figures'):
+        os.makedirs('figures')
 
     import sys
     try:

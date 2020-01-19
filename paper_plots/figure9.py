@@ -55,7 +55,7 @@ def get_stats(delta_mag, dmag, gtype=None, std=False, bins=6):
     if gtype is None:
         val, edge, _ = binned_statistic(delta_mag, dmag, statistic=stat, bins=bins)
     else:
-        cut = g1_morp h  == gtype
+        cut = g1_morph == gtype
         val, edge, _  =  binned_statistic(delta_mag[cut], dmag[cut], statistic=stat, bins=bins)
 
     return val, edge
