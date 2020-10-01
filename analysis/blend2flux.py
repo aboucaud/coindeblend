@@ -17,7 +17,7 @@ from keras.optimizers import Adam
 from keras.layers.noise import GaussianNoise
 
 from coindeblend.models import UNet_modular
-from coindeblend.models import SeqStack_modular_clean
+from coindeblend.models import SeqStack_modular
 from coindeblend.scores import jaccard_coef_int, iou
 
 
@@ -255,7 +255,7 @@ class ObjectDetector(object):
         # load the parameter for the SSD model
         params_model = self._init_params_model()
 
-        model = SeqStack_modular_clean(
+        model = SeqStack_modular(
             input_shape=(params_model.img_rows,
                          params_model.img_cols,
                          params_model.img_channels),
