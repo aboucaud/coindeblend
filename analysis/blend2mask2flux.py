@@ -16,8 +16,8 @@ from keras.callbacks import (ModelCheckpoint, EarlyStopping, ReduceLROnPlateau,
 from keras.optimizers import Adam
 from keras.layers.noise import GaussianNoise
 
-from deblend.models import FullModel # SeqStack
-from deblend.scores import L2norm
+from coindeblend.models import FullModel # SeqStack
+from coindeblend.scores import L2norm
 
 
 class ObjectDetector(object):

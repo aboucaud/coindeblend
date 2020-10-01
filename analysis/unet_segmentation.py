@@ -16,8 +16,8 @@ from keras.callbacks import (ModelCheckpoint, EarlyStopping, ReduceLROnPlateau,
 from keras.optimizers import Adam
 from keras.layers.noise import GaussianNoise
 
-from deblend.models import UNet_modular
-from deblend.scores import jaccard_coef_int, iou
+from coindeblend.models import UNet_modular
+from coindeblend.scores import jaccard_coef_int, iou
 
 import matplotlib.pyplot as plt
 import tensorflow as tf
