@@ -449,7 +449,7 @@ def main():
     job_id = "_".join([f"{filename}"] + sys.argv[1:])
 
     maindir = os.path.dirname(os.path.abspath(__file__))
-    datadir = os.path.join(maindir, "data_inspected")
+    datadir = os.path.join(maindir, "data")
     workdir = os.path.join(maindir, "jobs", job_id)
     logfile = os.path.join(workdir, "run.log")
     resfile = os.path.join(maindir, 'results.csv')

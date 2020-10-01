@@ -3,9 +3,9 @@ import numpy as np
 import pylab as plt
 import pandas as pd
 
-DATADIR = "/Users/alexandre/work/lsst/deblending/coin/candels-blender/output-s_666-n_30000"
-CATDIR = "/Users/alexandre/work/lsst/deblending/coin/candels-blender/output-s_666-n_30000"
-FINALCATDIR = "/Users/alexandre/work/lsst/deblending/coin/catalog_results"
+DATADIR = "<path-to-data-dir>"
+CATDIR = "<path-to-data-dir>"
+FINALCATDIR = "<path-to-catalog-results>"
 
 X_CENTER = 63.5
 Y_CENTER = 63.5
