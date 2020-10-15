@@ -1,11 +1,10 @@
+import os
 import sep
 import numpy as np
 import pylab as plt
 import pandas as pd
 
-DATADIR = "<path-to-data-dir>"
-CATDIR = "<path-to-data-dir>"
-FINALCATDIR = "<path-to-catalog-results>"
+CATDIR = "<path-to-catalog-results>"
 
 X_CENTER = 63.5
 Y_CENTER = 63.5
@@ -122,9 +121,10 @@ def analyse_single_blend(idx, blend_image, cat, fig=False):
 
 
 def analyse_blends(catalog, mix, fig):
+    datadir = os.getenv("COINBLEND_DATADIR")
     if mix == "irr":
-        data_blends = np.load(f"{DATADIR}/{sample}_images.npy")
-        fluxes_cat = np.load(f"{DATADIR}/{sample}_flux.npy")
+        data_blends = np.load(f"{datadir}/{sample}_images.npy")
+        fluxes_cat = np.load(f"{datadir}/{sample}_flux.npy")
     else:
         data_blends = np.load(f"../data/{sample}_images.npy")
         fluxes_cat = np.load(f"../data/{sample}_flux.npy")
@@ -144,8 +144,7 @@ def analyse_blends(catalog, mix, fig):
 
 
 def main(version, sample, mix, fig):
-    # full_cat = pd.read_csv(f"{CATDIR}/test_blend_cat_emille.csv")
-    cat = pd.read_csv(f"{FINALCATDIR}/flux_catalog_new_dataset_after_screening.csv")
+    cat = pd.read_csv(f"{CATDIR}/flux_catalog_new_dataset_after_screening.csv")
 
     g1_true_mag = cat["g1_mag"]
     g2_true_mag = cat["g2_mag"]
