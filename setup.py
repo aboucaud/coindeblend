@@ -10,7 +10,7 @@ setup(
     license="BSD",
     install_requires = [
         "numpy",
-        "tensorflow<2.0",
+        "tensorflow==1.14",
         "keras",
         "h5py",
         "scikit-learn",
