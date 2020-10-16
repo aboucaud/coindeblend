@@ -11,6 +11,6 @@ dependencies:
   - seaborn
   - sep
   - Keras
-  - tensorflow<2.0
+  - tensorflow=1.14
   - astropy
   - scikit-learn
