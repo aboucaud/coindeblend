@@ -6,5 +6,5 @@ matplotlib
 click
 sep
 Keras
-tensorflow<2
+tensorflow==1.14
 astropy
