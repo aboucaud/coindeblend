@@ -1,11 +1,8 @@
+import os
 import sep
 import numpy as np
 import pylab as plt
 import pandas as pd
-
-DATADIR = "/Users/alexandre/work/lsst/deblending/coin/candels-blender/output-s_666-n_30000"
-CATDIR = "/Users/alexandre/work/lsst/deblending/coin/candels-blender/output-s_666-n_30000"
-FINALCATDIR = "/Users/alexandre/work/lsst/deblending/coin/catalog_results"
 
 X_CENTER = 63.5
 Y_CENTER = 63.5
@@ -121,13 +118,11 @@ def analyse_single_blend(idx, blend_image, cat, fig=False):
     return result
 
 
-def analyse_blends(catalog, mix, fig):
-    if mix == "irr":
-        data_blends = np.load(f"{DATADIR}/{sample}_images.npy")
-        fluxes_cat = np.load(f"{DATADIR}/{sample}_flux.npy")
-    else:
-        data_blends = np.load(f"../data/{sample}_images.npy")
-        fluxes_cat = np.load(f"../data/{sample}_flux.npy")
+def analyse_blends(catalog, fig):
+    datadir = os.getenv("COINBLEND_DATADIR")
+
+    data_blends = np.load(f"{datadir}/{sample}_images.npy")
+    fluxes_cat = np.load(f"{datadir}/{sample}_flux.npy")
 
     n_sources = np.empty(len(data_blends), dtype=np.uint8)
     flux_central_estimated = np.empty(len(data_blends), dtype=np.float)
@@ -143,15 +138,14 @@ def analyse_blends(catalog, mix, fig):
     return n_sources, flux_central_estimated, flux_companion_estimated
 
 
-def main(version, sample, mix, fig):
-    # full_cat = pd.read_csv(f"{CATDIR}/test_blend_cat_emille.csv")
-    cat = pd.read_csv(f"{FINALCATDIR}/flux_catalog_new_dataset_after_screening.csv")
+def main(version, sample, fig):
+    cat = pd.read_csv(f"{datadir}/{sample}_catalogue.csv")
 
     g1_true_mag = cat["g1_mag"]
     g2_true_mag = cat["g2_mag"]
     delta_true_mag = g1_true_mag - g2_true_mag
 
-    n_sources, g1_sex, g2_sex = analyse_blends(cat, mix, fig)
+    n_sources, g1_sex, g2_sex = analyse_blends(cat, fig)
 
     flux_perc_central_estimated = (
         g1_sex / (g1_sex + g2_sex)
@@ -180,17 +174,16 @@ def main(version, sample, mix, fig):
     plt.scatter(delta_true_mag[three_and_more], residual_g1_mag[three_and_more], marker="o")
     plt.show()
 
-    # fig1 = f"{sample}/residuals_perc_conf_{version}_{sample}_{mix}.png"
-    # fig2 = f"{sample}/residual_flux_{version}_{sample}_{mix}.png"
+    # fig1 = f"{sample}/residuals_perc_conf_{version}_{sample}.png"
+    # fig2 = f"{sample}/residual_flux_{version}_{sample}.png"
 
-    # output_file = f"{sample}/survived_sextractor_{sample}_{version}_{mix}.txt"
-    # output_flux_file = f"{sample}/flux_sextractor_{sample}_{version}_{mix}.txt"
+    # output_file = f"{sample}/survived_sextractor_{sample}_{version}.txt"
+    # output_flux_file = f"{sample}/flux_sextractor_{sample}_{version}.txt"
 
 
 if __name__ == "__main__":
     version = "afterscreening"
     sample = "test"
-    mix = "irr"
     fig = False
 
-    main(version, sample, mix, fig)
+    main(version, sample, fig)

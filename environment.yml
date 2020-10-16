@@ -13,3 +13,4 @@ dependencies:
   - Keras
   - tensorflow<2.0
   - astropy
+  - scikit-learn

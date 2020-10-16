@@ -40,6 +40,11 @@ The blend-images used in this analysis have been produced with [`candels-blender
 
 `output-s_<SEED>-n_<N_BLENDS>` therefore becomes the data directory a.k.a. `datadir`s
 
+Set the	environment variable 'COINBLEND_DATADIR' to your chosen	datadir	via
+```bash
+export COINBLEND_DATADIR=<path-to-datadir>
+```
+
 ### `coindeblend`
 
 1. Clone this repository

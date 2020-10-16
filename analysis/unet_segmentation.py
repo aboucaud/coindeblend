@@ -16,8 +16,8 @@ from keras.callbacks import (ModelCheckpoint, EarlyStopping, ReduceLROnPlateau,
 from keras.optimizers import Adam
 from keras.layers.noise import GaussianNoise
 
-from deblend.models import UNet_modular
-from deblend.scores import jaccard_coef_int, iou
+from coindeblend.models import UNet_modular
+from coindeblend.scores import jaccard_coef_int, iou
 
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -449,7 +449,7 @@ def main():
     job_id = "_".join([f"{filename}"] + sys.argv[1:])
 
     maindir = os.path.dirname(os.path.abspath(__file__))
-    datadir = os.path.join(maindir, "data_inspected")
+    datadir = os.getenv("COINBLEND_DATADIR")
     workdir = os.path.join(maindir, "jobs", job_id)
     logfile = os.path.join(workdir, "run.log")
     resfile = os.path.join(maindir, 'results.csv')

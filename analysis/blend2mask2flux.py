@@ -16,8 +16,8 @@ from keras.callbacks import (ModelCheckpoint, EarlyStopping, ReduceLROnPlateau,
 from keras.optimizers import Adam
 from keras.layers.noise import GaussianNoise
 
-from deblend.models import FullModel # SeqStack
-from deblend.scores import L2norm
+from coindeblend.models import FullModel # SeqStack
+from coindeblend.scores import L2norm
 
 
 class ObjectDetector(object):
@@ -298,7 +298,7 @@ def main():
     job_id = "_".join([f"{filename}"] + sys.argv[1:])
 
     maindir = os.path.dirname(os.path.abspath(__file__))
-    datadir = os.path.join(maindir, "data_with_irr_clean")
+    datadir = os.getenv("COINBLEND_DATADIR")
     workdir = os.path.join(maindir, "jobs", job_id)
     logfile = os.path.join(workdir, "run.log")
     resfile = os.path.join(maindir, 'results.csv')
